@@ -31,3 +31,9 @@ def absolute_value(n):
         return n * -1
     else:
         return n
+
+def factorial(n):
+    value = 1
+    for i in range(1, n + 1):
+        value *= i
+    return value

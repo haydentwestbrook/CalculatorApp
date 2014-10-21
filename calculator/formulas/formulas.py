@@ -1,4 +1,4 @@
-from ..operators import *
+from calculator.operators import absolute_value
 
 
 def pythagorean(a, b, mode="h"):
