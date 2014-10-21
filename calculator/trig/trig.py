@@ -36,6 +36,7 @@ def csc(angle, n=75):
     #angle out to n terms. n = 75 by default
     return 1.0 / sin(angle, n)
 
+
 def cot(angle, n=75):
     #Returns the cotangent approximation for the
     #angle out to n terms. n = 75 by default
