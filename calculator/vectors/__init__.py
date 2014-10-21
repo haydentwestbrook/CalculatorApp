@@ -1,1 +1,1 @@
-import vectors
+from . import vectors

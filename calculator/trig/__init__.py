@@ -1,1 +1,1 @@
-import trig
+from . import trig
