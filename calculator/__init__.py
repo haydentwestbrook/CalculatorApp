@@ -1,3 +1,3 @@
-from . import operators
+import calculator.operators
 
-__all__ = ["formulas", "trig", "vectors"]
+__all__ = ["formulas", "trig", "vectors", "logs"]

@@ -1,1 +1,1 @@
-from .logs import *
+from calculator.logs import logs

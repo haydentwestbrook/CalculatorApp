@@ -1,1 +1,1 @@
-from . import vectors
+from calculator.vectors import vectors

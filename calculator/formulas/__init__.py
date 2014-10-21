@@ -1,1 +1,1 @@
-from . import formulas
+from calculator.formulas import formulas

@@ -1,1 +1,1 @@
-from . import trig
+from calculator.trig import trig
