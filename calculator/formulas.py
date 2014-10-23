@@ -1,4 +1,5 @@
-import calculator.operators
+from operators import absolute_value
+
 
 def pythagorean(a, b, mode="h"):
     if mode == "h":
@@ -7,8 +8,9 @@ def pythagorean(a, b, mode="h"):
         return (b ** 2 - a ** 2) ** (1 / 2)
 
 
-def distance(x,y,w,z):
+def distance(x, y, w, z):
     return absolute_value(pythagorean((x - w), (y - z)))
+
 
 def fib(x):
     # Takes a variable x and will find that number in the Fibonacci Sequence
