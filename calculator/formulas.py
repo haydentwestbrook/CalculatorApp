@@ -20,3 +20,9 @@ def fib(x):
         return 1
     else:
         return fib(x-1) + fib(x-2)
+
+
+def continues_fib(x):
+    for i in range(x+1):
+        print(fib(i))
+    return fib(x)
