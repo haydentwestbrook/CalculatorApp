@@ -1,5 +1,4 @@
 from operators import *
-import queue as q
 
 '''
 def parse2(string):
