@@ -4,9 +4,6 @@ from operators import *
 def parse(string):
 
     """
-    :param string:
-    :return string:
-
     Takes in a string of math operations and returns the solution
     """
 
@@ -114,7 +111,9 @@ def get_number(string, i, mode="f"):
 
 
 def strip_string(string):
-    #Strips string of whitespace
+    """
+    Strips string of whitespace
+    """
     string = string.replace(" ", "")
     string = string.replace("\t", "")
     string = string.replace("\n", "")
