@@ -1,4 +1,5 @@
 from operators import *
+import flask
 
 
 def parse(string):
@@ -118,3 +119,8 @@ def strip_string(string):
     string = string.replace("\t", "")
     string = string.replace("\n", "")
     return string
+
+def printer(equation):
+
+    flask.flash("The equation, " + equation + ", equals:")
+    flask.flash(parse(equation))
