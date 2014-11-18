@@ -16,7 +16,7 @@ class Vector:
         magnitude = 0
         for value in self.values:
             magnitude += value ** 2
-        magnitude ** (1/2)
+        magnitude = magnitude ** (1/2)
         return magnitude
 
     def append(self, value):
