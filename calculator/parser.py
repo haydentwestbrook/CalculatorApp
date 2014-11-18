@@ -8,30 +8,37 @@ def parse(string):
     Takes in a string of math operations and returns the solution
     """
 
-    i, found = 0, False
-    while i < len(string):
-        if string[i] == "(":
-            found = True
-            j = i + 1
-            while j < len(string) and string[j] != ")":
-                j += 1
-            new_string = string[i+1: j]
-            break
-        i += 1
-    if found:
-        string = string[0:i] + parse(new_string) + string[j+1:len(string)]
-
-    while "^" in string:
+    while "(" in string:
         i, found = 0, False
         while i < len(string):
-            if string[i] == "^":
+            if string[i] == "(":
                 found = True
+                j, n = i + 1, 0
+                while j < len(string):
+                    if string[j] == "(":
+                        n += 1
+                    if string[j] == ")" and n == 0:
+                        break
+                    if string[j] == ")":
+                        n -= 1
+                    j += 1
+                new_string = string[i+1: j]
                 break
             i += 1
         if found:
-            num1 = get_number(string, i, "b")
-            num2 = get_number(string, i, "f")
-            string = string[0:i-len(num1)] + str(float(num1) ** float(num2)) + string[i+len(num2)+1:len(string)]
+            string = string[0:i] + parse(new_string) + string[j+1:len(string)]
+
+        while "^" in string:
+            i, found = 0, False
+            while i < len(string):
+                if string[i] == "^":
+                    found = True
+                    break
+                i += 1
+            if found:
+                num1 = get_number(string, i, "b")
+                num2 = get_number(string, i, "f")
+                string = string[0:i-len(num1)] + str(float(num1) ** float(num2)) + string[i+len(num2)+1:len(string)]
 
     while "*" in string or "/" in string:
         i, found = 0, False
@@ -47,9 +54,10 @@ def parse(string):
                 string = string[0:i-len(num1)] + str(float(num1) * float(num2)) + string[i+len(num2)+1:len(string)]
             elif string[i] == "/":
                 string = string[0:i-len(num1)] + str(float(num1) / float(num2)) + string[i+len(num2)+1:len(string)]
+
     while True:
         try:
-            float(string)
+            string = str(float(string))
             if float(string) == float(int(float(string))):
                 string = string[0:len(string)-2]
             break
@@ -121,6 +129,6 @@ def strip_string(string):
     return string
 
 def printer(equation):
-
+    pass
     flask.flash("The equation, " + equation + ", equals:")
     flask.flash(parse(equation))
