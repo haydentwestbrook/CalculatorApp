@@ -26,6 +26,9 @@ class Vector:
         except:
             raise TypeError()
 
+    def __str__(self):
+        return str(self.values)
+
     def __len__(self):
         return len(self.values)
 
