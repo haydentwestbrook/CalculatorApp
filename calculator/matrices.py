@@ -63,3 +63,35 @@ class Matrix:
             for j in range(result.cols):
                 result[i][j] -= other[i][j]
         return result
+
+    def __mul__(self, other):
+        if not isinstance(other, Matrix):
+            raise TypeError()
+        if not (self.rows == other.cols and self.cols == other.rows):
+            raise TypeError()
+        values = []
+        for i in range(self.rows):
+            row = []
+            for j in range(other.cols):
+                value = 0
+                for k in range(other.rows):
+                    value += self[i][k] * other[k][j]
+                row.append(value)
+            values.append(row)
+        return Matrix(values)
+
+    def __div__(self, other):
+        if not isinstance(other, Matrix):
+            raise TypeError()
+        if not (self.rows == other.cols and self.cols == other.rows):
+            raise TypeError()
+        values = []
+        for i in range(self.rows):
+            row = []
+            for j in range(other.cols):
+                value = 0
+                for k in range(other.rows):
+                    value += self[i][k] / other[k][j]
+                row.append(value)
+            values.append(row)
+        return Matrix(values)
