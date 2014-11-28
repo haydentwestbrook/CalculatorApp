@@ -35,10 +35,16 @@ class Matrix:
         return count
 
     def __str__(self):
+        max = 0
+        for row in self:
+            for value in row:
+                if abs(value) > max:
+                    max = value
+        n = len(str(max))
         string = ""
         for row in self:
             for value in row:
-                string += str(value) + " "
+                string += str(value) + " " * (n - len(str(value)) + 1)
             string += "\n"
         return string
 
@@ -93,5 +99,14 @@ class Matrix:
                 for k in range(other.rows):
                     value += self[i][k] / other[k][j]
                 row.append(value)
+            values.append(row)
+        return Matrix(values)
+
+    def transverse(self):
+        values = []
+        for i in range(self.cols):
+            row = []
+            for j in range(self.rows):
+                row.append(self[j][i])
             values.append(row)
         return Matrix(values)
