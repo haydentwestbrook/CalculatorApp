@@ -1,3 +1,5 @@
+from exceptions import VectorError
+
 class Vector:
 
     def __init__(self, values):
@@ -48,7 +50,7 @@ class Vector:
         if not isinstance(other, Vector):
             raise TypeError()
         if len(self) != len(other):
-            raise Exception()
+            raise VectorError("Vectors must be the same size.")
         else:
             new_values = []
             for i in range(len(self)):
@@ -59,7 +61,7 @@ class Vector:
         if not isinstance(other, Vector):
             raise TypeError()
         if len(self) != len(other):
-            raise Exception()
+            raise VectorError("Vectors must be the same size.")
         else:
             new_values = []
             for i in range(len(self)):
@@ -90,7 +92,7 @@ class Vector:
         if not isinstance(other, Vector):
             raise TypeError()
         if len(self) != len(other):
-            raise Exception()
+            VectorError("Vectors must be the same size.")
         else:
             sum = 0
             for i in range(len(self)):
@@ -101,7 +103,7 @@ class Vector:
         if not isinstance(other, Vector):
                 raise TypeError()
         if len(self) != 3 or len(other) != 3:
-            raise Exception()
+            raise VectorError("Vectors must both be 3 dimensional.")
         else:
             new_values = [self.y * other.z - self.z * other.y,
                           self.z * other.x - self.x * other.z,

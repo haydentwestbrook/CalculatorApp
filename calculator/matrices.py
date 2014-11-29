@@ -1,3 +1,5 @@
+from exceptions import MatrixError
+
 class Matrix:
 
     def __init__(self, values):
@@ -6,7 +8,7 @@ class Matrix:
                 if not isinstance(row, list):
                     raise TypeError()
                 if len(row) != len(values[0]):
-                    raise TypeError()
+                    raise MatrixError("Each row of the matrix must be the same size.")
             self.values = values
             self.rows = len(values)
             self.cols = len(values[0])
@@ -52,7 +54,7 @@ class Matrix:
         if not isinstance(other, Matrix):
             raise TypeError()
         if other.count() != self.count():
-            raise TypeError()
+            raise MatrixError("Matrices must be the same size.")
         result = Matrix(self.values)
         for i in range(result.rows):
             for j in range(result.cols):
@@ -63,7 +65,7 @@ class Matrix:
         if not isinstance(other, Matrix):
             raise TypeError()
         if other.count() != self.count():
-            raise TypeError()
+            raise MatrixError("Matrices must be the same size.")
         result = Matrix(self.values)
         for i in range(result.rows):
             for j in range(result.cols):
@@ -74,7 +76,7 @@ class Matrix:
         if not isinstance(other, Matrix):
             raise TypeError()
         if not (self.rows == other.cols and self.cols == other.rows):
-            raise TypeError()
+            raise MatrixError("Matrices were not of compatible sizes.")
         values = []
         for i in range(self.rows):
             row = []
@@ -90,7 +92,7 @@ class Matrix:
         if not isinstance(other, Matrix):
             raise TypeError()
         if not (self.rows == other.cols and self.cols == other.rows):
-            raise TypeError()
+            raise MatrixError("Matrices were not of compatible sizes.")
         values = []
         for i in range(self.rows):
             row = []
