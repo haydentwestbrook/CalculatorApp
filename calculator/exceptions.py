@@ -4,3 +4,7 @@ class VectorError(Exception):
 
 class MatrixError(Exception):
     pass
+
+
+class InputError(Exception):
+    pass
