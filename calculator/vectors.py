@@ -1,3 +1,5 @@
+from exceptions import VectorError
+
 class Vector:
 
     def __init__(self, values):
@@ -16,7 +18,7 @@ class Vector:
         magnitude = 0
         for value in self.values:
             magnitude += value ** 2
-        magnitude ** (1/2)
+        magnitude = magnitude ** (1/2)
         return magnitude
 
     def append(self, value):
@@ -25,6 +27,9 @@ class Vector:
             self.values.append(value)
         except:
             raise TypeError()
+
+    def __str__(self):
+        return str(self.values)
 
     def __len__(self):
         return len(self.values)
@@ -45,7 +50,7 @@ class Vector:
         if not isinstance(other, Vector):
             raise TypeError()
         if len(self) != len(other):
-            raise Exception()
+            raise VectorError("Vectors must be the same size.")
         else:
             new_values = []
             for i in range(len(self)):
@@ -56,7 +61,7 @@ class Vector:
         if not isinstance(other, Vector):
             raise TypeError()
         if len(self) != len(other):
-            raise Exception()
+            raise VectorError("Vectors must be the same size.")
         else:
             new_values = []
             for i in range(len(self)):
@@ -83,24 +88,24 @@ class Vector:
         except:
             raise TypeError()
 
-    def dot(self, vector_a, vector_b):
-        if not isinstance(vector_a, Vector) or not isinstance(vector_b, Vector):
+    def dot(self, other):
+        if not isinstance(other, Vector):
             raise TypeError()
-        if len(vector_a) != len(vector_b):
-            raise Exception()
+        if len(self) != len(other):
+            VectorError("Vectors must be the same size.")
         else:
             sum = 0
-            for i in range(len(vector_a)):
-                sum += vector_a[i] * vector_b[i]
+            for i in range(len(self)):
+                sum += self[i] * other[i]
             return sum
 
-    def cross(self, vector_a, vector_b):
-        if not isinstance(vector_a, Vector) or not isinstance(vector_b, Vector):
+    def cross(self, other):
+        if not isinstance(other, Vector):
                 raise TypeError()
-        if len(vector_a) != 3 and len(vector_b) != 3:
-            raise Exception()
+        if len(self) != 3 or len(other) != 3:
+            raise VectorError("Vectors must both be 3 dimensional.")
         else:
-            new_values = [vector_a.y * vector_b.z - vector_a.z * vector_b.y,
-                          vector_a.z * vector_b.x - vector_a.x * vector_b.z,
-                          vector_a.x * vector_b.y - vector_a.y * vector_b.x]
+            new_values = [self.y * other.z - self.z * other.y,
+                          self.z * other.x - self.x * other.z,
+                          self.x * other.y - self.y * other.x]
             return Vector(new_values)
