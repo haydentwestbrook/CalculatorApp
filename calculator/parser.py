@@ -124,3 +124,4 @@ def printer(equation):
 
     flask.flash("The equation, " + equation + ", equals:")
     flask.flash(parse(equation))
+	
